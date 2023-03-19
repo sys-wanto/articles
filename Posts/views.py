@@ -10,24 +10,32 @@ import pickle
 class PostsApiView(APIView):
     serializer_class = PostsSerializer
 
-    def get(self, request, param0, param1=None, *args, **kwargs):
+    def get(self, request, param0=None, param1=None, *args, **kwargs):
         msg = []
-        if (param1 == None):
-            posts = Posts.objects.filter(Id=param0).values(
-                'Id', 'Title', 'Content', 'Category', 'Status')
-            if (posts.exists()):
-                is_error = False
-                msg.append("Data di temukan.")
-                posts = posts.first()
-            else:
-                is_error = True
-                msg.append("Data tidak di temukan.")
-                posts = []
-        else:
+        if (param1 == None and param0 == None):
+            param0 = 10;
+            param1 = 0;
             is_error = True
             msg.append("Data di temukan.")
             posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
-                                               'Status').order_by("-Created_date")
+                                               'Status').order_by("-Created_date")[param1:param0+param1]
+        else:
+            if(param1 != None):
+                is_error = False
+                msg.append("Data di temukan.")
+                posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
+                                               'Status').order_by("-Created_date")[param1:param0+param1]
+            else:
+                posts = Posts.objects.filter(Id=param0).values(
+                    'Id', 'Title', 'Content', 'Category', 'Status')
+                if (posts.exists()):
+                    is_error = False
+                    msg.append("Data di temukan.")
+                    posts = posts.first()
+                else:
+                    is_error = True
+                    msg.append("Data tidak di temukan.")
+                    posts = []
 
         return Response({
             "is_error": is_error,
@@ -62,21 +70,49 @@ class PostsApiView(APIView):
         })
 
     def put(self, request, param0, *args, **kwargs):
-        post = Posts.objects.filter(Id=param0)
-        post.query = pickle.loads(pickle.dumps(self.posts.query))
-        data = None
+        msg = []
+        data = []
+        is_error = True
+        post = Posts.objects.filter(Id=param0).values(
+            'Title', 'Content', 'Category', 'Status')
         if (post.exists()):
-            data = "Ada"
+            serializer_obj = PostsSerializer(data=request.data)
+            if (serializer_obj.is_valid()):
+                post_edit = Posts.objects.get(Id=param0)
+                post_edit.Title = serializer_obj.data['Title']
+                post_edit.Content = serializer_obj.data['Content'],
+                post_edit.Category = serializer_obj.data['Category'],
+                post_edit.Status = serializer_obj.data['Status']
+                post_edit.save()
+                data = post.first()
+                msg.append("Data sukses di rubah")
+            else:
+                keys = list(serializer_obj._errors.keys())
+                for key in keys:
+                    msg.append(
+                        key+" :  "+" | ".join(serializer_obj._errors[key]))
+                msg = msg
+        else:
+            msg.append("Data tidak di temukan")
         return Response({
-            "is_error": False,
-            "data": post.first(),
-            "messages": "msg"
+            "is_error": is_error,
+            "data": data,
+            "messages": msg
         })
 
     def delete(self, request, param0, *args, **kwargs):
-        print(param0)
+        msg = []
+        data = []
+        is_error = True
+        post = Posts.objects.filter(Id=param0).values(
+            'Title', 'Content', 'Category', 'Status')
+        if (post.exists()):
+            Posts.objects.get(Id=param0).delete()
+            msg.append("Data sukses di hapus")
+        else:
+            msg.append("Data tidak di temukan")
         return Response({
-            "is_error": False,
-            "data": request.data,
-            "messages": str(param0)+" deleted"
+            "is_error": is_error,
+            "data": data,
+            "messages": msg
         })
