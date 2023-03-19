@@ -17,9 +17,18 @@ from django.contrib import admin
 from django.urls import path
 # from django.conf.urls import url
 from Posts import views
-from django.urls import re_path as url
+# from django.urls import re_path as url
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url("articles/posts/", views.PostsApiView.as_view())
+
+    path('articles/', views.PostsApiView.as_view(),
+         name="Add New Post in Articles"),
+         
+    path('articles/<int:param0>/<int:param1>/',
+         views.PostsApiView.as_view(), name="Get List Post in Articles"),
+
+    path('articles/<int:param0>/', views.PostsApiView.as_view(),
+         name="GET / PUT / DELETE Post in Articles")
 ]

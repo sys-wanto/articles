@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-+0m^)%r8^#21!1t^^iqnk-)rvxg%42k^=7(#6l(+4#xcg2%()t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+SESSION_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True 
+DCS_SESSION_COOKIE_SAMESITE = "None"
+# CORS_ALLOW_CREDENTIALS = True
+# CSRF_COOKIE_HTTPONLY = False
+APPEND_SLASH = False
 
 
 # Application definition
@@ -83,6 +89,9 @@ DATABASES = {
         'PASSWORD': '040196',  
         'HOST': '127.0.0.1',  
         'PORT': '3306',
+        'OPTIONS':{
+            'charset':'utf8mb4'
+        }
     }  
 }  
 

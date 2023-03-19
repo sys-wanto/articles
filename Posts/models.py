@@ -24,8 +24,10 @@ STATUSCHOICE = (
 )
 
 my_default_errors = {
-    'required': 'This field is required',
-    'invalid': 'Enter a valid value'
+    'required': 'Kolom wajib di isi!',
+    'invalid': 'Isi tidak Sesuai!',
+    'min_length' : 'Berisi %(show_value)d, minimal %(limit_value)d',
+    'invalid_choice':'Pilihan tidak tersedia'
 }
 
 class Posts(models.Model):
