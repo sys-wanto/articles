@@ -11,20 +11,33 @@ class PostsApiView(APIView):
     serializer_class = PostsSerializer
 
     def get(self, request, param0=None, param1=None, *args, **kwargs):
+        # param0 = limit / index
+        # param1 = offset
         msg = []
+        vars = None
         if (param1 == None and param0 == None):
-            param0 = 10;
-            param1 = 0;
+            param0 = 10
+            param1 = 0
             is_error = True
             msg.append("Data di temukan.")
             posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
                                                'Status').order_by("-Created_date")[param1:param0+param1]
+            vars = {
+                "next_page": param0+param1,
+                "prev_page": param1 if param0-param1 <= 0 else param0-param1,
+                "data_count": Posts.objects.all().count()
+            }
         else:
-            if(param1 != None):
+            if (param1 != None):
                 is_error = False
                 msg.append("Data di temukan.")
                 posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
-                                               'Status').order_by("-Created_date")[param1:param0+param1]
+                                                   'Status').order_by("-Created_date")[param1:param0+param1]
+                vars = {
+                    "next_page": param0+param1,
+                    "prev_page": param1 if param1-param0 <= 0 else param1-param0,
+                    "data_count": Posts.objects.all().count()
+                }
             else:
                 posts = Posts.objects.filter(Id=param0).values(
                     'Id', 'Title', 'Content', 'Category', 'Status')
@@ -40,6 +53,7 @@ class PostsApiView(APIView):
         return Response({
             "is_error": is_error,
             "data": posts,
+            "vars": vars,
             "messages": msg
         })
 
@@ -66,6 +80,7 @@ class PostsApiView(APIView):
         return Response({
             "is_error": is_error,
             "data": request.data,
+            "vars": None,
             "messages": msg
         })
 
@@ -97,6 +112,7 @@ class PostsApiView(APIView):
         return Response({
             "is_error": is_error,
             "data": data,
+            "vars": None,
             "messages": msg
         })
 
@@ -114,5 +130,6 @@ class PostsApiView(APIView):
         return Response({
             "is_error": is_error,
             "data": data,
+            "vars": None,
             "messages": msg
         })
