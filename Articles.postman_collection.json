@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "fc2ac9da-1e19-438f-9f1f-d7637415622e",
+		"name": "Articles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3440311"
+	},
+	"item": [
+		{
+			"name": "Get All Posts in Article",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/articles/10/0/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"articles",
+						"10",
+						"0",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "{{csrftoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\":\"Articles dalam Bahasa Inggris Tapi Bahasa Indonesia 1\",\r\n    \"Content\":\"Dalam 🔗belajar bahasa Inggris, sering kali ditemukan articles atau kata sandang di dalam sebuah kalimat 🔗bahasa Inggris. Articles sendiri dibedakan menjadi dua yaitu definite articles dan indefinite articles.\\r\\n\\r\\nDefinite articles adalah kata sandang tertentu yang berupa kata sandang ‘the’ dan digunakan pada bentuk-bentuk kata tertentu saja. Sedangkan indefinite articles adalah memakai kata sandang ‘a’ dan ‘an’ yang memiliki arti sebuah. Berikut ini penjelasan kedua 🔗artikel dalam bahasa Inggris.\\r\\n\\r\\n1. DEFINITE ARTICLES\\r\\nDefinite articles digunakan untuk bermacam-macam variasai.\\r\\n\\r\\n1. Digunakan untuk kata benda yang telah disebut pada kalimat sebelumnya.\\r\\n\\r\\nContoh:\\r\\n\\r\\nI have a book. The book is very interesting.\\r\\n2. Digunakan untuk menunjukan kitab suci, tempat, laut atau wilayah.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe sempu island.\\r\\n3. Digunakan untuk kata yang menunjukan bangsa atau orang secara kolektif.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe Javanese.\\r\\n4. Digunakan dalam bentuk superlative dan ordinal numbers.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe longest.\\r\\n5. Digunakan untuk nama keluarga dalam bentuk jamak yang berarti family.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe Cullen.\\r\\n6. Digunakan untuk nama benda yang hanya satu-satunya.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe sun.\\r\\nThe moon.\\r\\n2. INDEFINITE ARTICLES\\r\\nIndefinite articles dikelompokan dalam article ‘a’ dan ‘an’. Kata sandang ‘a’ digunakan untuk benda tunggal yang dimulai dengan bunyi konsonan sedangkan ‘an’ digunakan untuk kata-kata benda yang diawali dengan huruf vokal. Indefinite article digunakan dalam bermacam-macam variasi pula.\\r\\n\\r\\n1. Digunakan saat di depan nama pangkat atau jabatan.\\r\\n\\r\\nContoh:\\r\\n\\r\\na sailor.\\r\\n2. Digunakan di depan nama kebangsaan.\\r\\n\\r\\nContoh:\\r\\n\\r\\nan American.\\r\\n3. Digunakan di depan nama agama.\\r\\n\\r\\nContoh:\\r\\n\\r\\na Moslem.\\r\\n4. Digunakan untuk kata benda tunggal yang dapat dihitung.\\r\\n\\r\\nContoh:\\r\\n\\r\\nWe have a pen.\\r\\n5. Digunakan sebelum kata benda tunggal yang digunakan sebagai contoh dari sebuah kelompok benda.\\r\\n\\r\\nContoh:\\r\\n\\r\\nan announcer must be able show teater of mind.\\r\\n6. Digunakan dalam penulisan jumlah tertentu.\\r\\n\\r\\nContoh:\\r\\n\\r\\na couple of parents.\\r\\n7. Digunakan untuk menyatakan harga satuan tertentu.\\r\\n\\r\\nContoh:\\r\\n\\r\\n$50 a kilo.\\r\\n8. Digunakan dalam kalimat seru.\\r\\n\\r\\nContoh:\\r\\n\\r\\nWhat a beautiful girl!\\r\\nItu dia beberapa cara dalam menggunakan articles pada bahasa Inggris.\",\r\n    \"Category\":\"Articles\",\r\n    \"Status\":\"PUBLISH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/articles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Post in Article",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Title\":\"Articles dalam Bahasa Inggris Tapi Bahasa Indonesia 1\",\r\n    \"Content\":\"Dalam 🔗belajar bahasa Inggris, sering kali ditemukan articles atau kata sandang di dalam sebuah kalimat 🔗bahasa Inggris. Articles sendiri dibedakan menjadi dua yaitu definite articles dan indefinite articles.\\r\\n\\r\\nDefinite articles adalah kata sandang tertentu yang berupa kata sandang ‘the’ dan digunakan pada bentuk-bentuk kata tertentu saja. Sedangkan indefinite articles adalah memakai kata sandang ‘a’ dan ‘an’ yang memiliki arti sebuah. Berikut ini penjelasan kedua 🔗artikel dalam bahasa Inggris.\\r\\n\\r\\n1. DEFINITE ARTICLES\\r\\nDefinite articles digunakan untuk bermacam-macam variasai.\\r\\n\\r\\n1. Digunakan untuk kata benda yang telah disebut pada kalimat sebelumnya.\\r\\n\\r\\nContoh:\\r\\n\\r\\nI have a book. The book is very interesting.\\r\\n2. Digunakan untuk menunjukan kitab suci, tempat, laut atau wilayah.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe sempu island.\\r\\n3. Digunakan untuk kata yang menunjukan bangsa atau orang secara kolektif.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe Javanese.\\r\\n4. Digunakan dalam bentuk superlative dan ordinal numbers.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe longest.\\r\\n5. Digunakan untuk nama keluarga dalam bentuk jamak yang berarti family.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe Cullen.\\r\\n6. Digunakan untuk nama benda yang hanya satu-satunya.\\r\\n\\r\\nContoh:\\r\\n\\r\\nThe sun.\\r\\nThe moon.\\r\\n2. INDEFINITE ARTICLES\\r\\nIndefinite articles dikelompokan dalam article ‘a’ dan ‘an’. Kata sandang ‘a’ digunakan untuk benda tunggal yang dimulai dengan bunyi konsonan sedangkan ‘an’ digunakan untuk kata-kata benda yang diawali dengan huruf vokal. Indefinite article digunakan dalam bermacam-macam variasi pula.\\r\\n\\r\\n1. Digunakan saat di depan nama pangkat atau jabatan.\\r\\n\\r\\nContoh:\\r\\n\\r\\na sailor.\\r\\n2. Digunakan di depan nama kebangsaan.\\r\\n\\r\\nContoh:\\r\\n\\r\\nan American.\\r\\n3. Digunakan di depan nama agama.\\r\\n\\r\\nContoh:\\r\\n\\r\\na Moslem.\\r\\n4. Digunakan untuk kata benda tunggal yang dapat dihitung.\\r\\n\\r\\nContoh:\\r\\n\\r\\nWe have a pen.\\r\\n5. Digunakan sebelum kata benda tunggal yang digunakan sebagai contoh dari sebuah kelompok benda.\\r\\n\\r\\nContoh:\\r\\n\\r\\nan announcer must be able show teater of mind.\\r\\n6. Digunakan dalam penulisan jumlah tertentu.\\r\\n\\r\\nContoh:\\r\\n\\r\\na couple of parents.\\r\\n7. Digunakan untuk menyatakan harga satuan tertentu.\\r\\n\\r\\nContoh:\\r\\n\\r\\n$50 a kilo.\\r\\n8. Digunakan dalam kalimat seru.\\r\\n\\r\\nContoh:\\r\\n\\r\\nWhat a beautiful girl!\\r\\nItu dia beberapa cara dalam menggunakan articles pada bahasa Inggris.\",\r\n    \"Category\":\"Articles\",\r\n    \"Status\":\"PUBLISH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/articles/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"articles",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post in Article",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/articles/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"articles",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post Specifid Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/articles/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"articles",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

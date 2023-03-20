@@ -15,7 +15,7 @@ class PostsApiView(APIView):
         # param1 = offset
         msg = []
         vars = None
-        if (param1 == None and param0 == None):
+        if param1 == None and param0 == None:
             param0 = 10
             param1 = 0
             is_error = True
@@ -29,7 +29,7 @@ class PostsApiView(APIView):
                 "data_count": Posts.objects.all().count()
             }
         else:
-            if (param1 != None):
+            if param1 != None:
                 is_error = False
                 msg.append("Data di temukan.")
                 posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
@@ -43,7 +43,7 @@ class PostsApiView(APIView):
             else:
                 posts = Posts.objects.filter(Id=param0).values(
                     'Id', 'Title', 'Content', 'Category', 'Status')
-                if (posts.exists()):
+                if posts.exists():
                     is_error = False
                     msg.append("Data di temukan.")
                     posts = posts.first()
@@ -62,7 +62,7 @@ class PostsApiView(APIView):
     def post(self, request, *args, **kwargs):
         msg = []
         serializer_obj = PostsSerializer(data=request.data)
-        if (serializer_obj.is_valid()):
+        if serializer_obj.is_valid():
             is_error = False
             Posts.objects.create(
                 Title=serializer_obj.data['Title'],
@@ -92,13 +92,13 @@ class PostsApiView(APIView):
         is_error = True
         post = Posts.objects.filter(Id=param0).values(
             'Title', 'Content', 'Category', 'Status')
-        if (post.exists()):
+        if post.exists():
             serializer_obj = PostsSerializer(data=request.data)
-            if (serializer_obj.is_valid()):
+            if serializer_obj.is_valid():
                 post_edit = Posts.objects.get(Id=param0)
                 post_edit.Title = serializer_obj.data['Title']
-                post_edit.Content = serializer_obj.data['Content'],
-                post_edit.Category = serializer_obj.data['Category'],
+                post_edit.Content = serializer_obj.data['Content']
+                post_edit.Category = serializer_obj.data['Category']
                 post_edit.Status = serializer_obj.data['Status']
                 post_edit.save()
                 data = post.first()
@@ -124,7 +124,7 @@ class PostsApiView(APIView):
         is_error = True
         post = Posts.objects.filter(Id=param0).values(
             'Title', 'Content', 'Category', 'Status')
-        if (post.exists()):
+        if post.exists():
             Posts.objects.get(Id=param0).delete()
             msg.append("Data sukses di hapus")
         else:
