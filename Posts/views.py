@@ -25,7 +25,7 @@ class PostsApiView(APIView):
             vars = {
                 "row_limit":param0,
                 "next_page": param0+param1,
-                "prev_page": param1 if param0-param1 <= 0 else param0-param1,
+                "prev_page": param1 if param0-param1 < 0 else param0-param1,
                 "data_count": Posts.objects.all().count()
             }
         else:
