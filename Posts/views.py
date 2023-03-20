@@ -18,7 +18,7 @@ class PostsApiView(APIView):
         if (param1 == None and param0 == None):
             param0 = 10
             param1 = 0
-            is_error = True
+            is_error = False
             msg.append("Data di temukan.")
             posts = Posts.objects.all().values('Id', 'Title', 'Content', 'Category',
                                                'Status').order_by("-Created_date")[param1:param0+param1]
@@ -37,7 +37,7 @@ class PostsApiView(APIView):
                 vars = {
                     "row_limit":param0,
                     "next_page": param0+param1,
-                    "prev_page": param1 if param1-param0 <= 0 else param1-param0,
+                    "prev_page": param1 if param1-param0 < 0 else param1-param0,
                     "data_count": Posts.objects.all().count()
                 }
             else:
