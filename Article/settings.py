@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'Article.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'articles_api',  
+        'NAME': 'articles',  
         'USER': 'root',  
         'PASSWORD': '040196',  
         'HOST': '127.0.0.1',  
