@@ -52,7 +52,6 @@ class PostsApiView(APIView):
                     msg.append("Data tidak di temukan.")
                     posts = []
 
-
         return Response({
             "is_error": is_error,
             "data": posts,
